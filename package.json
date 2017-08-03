@@ -1,0 +1,18 @@
+{
+  "name": "jira-issue-added-to-sprint-slack-notifications",
+  "version": "1.0.0",
+  "description": "get notified in slack when an issue is added to an active sprint in jira",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "request": "^2.81.0",
+    "slack": "^8.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mike Solomon",
+  "license": "MIT"
+}
