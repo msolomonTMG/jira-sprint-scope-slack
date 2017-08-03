@@ -13,7 +13,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-// route for waking up the heroku app when a member joins
 app.post('/jira-issue-added-to-sprint', function(req, res) {
   let issue = req.body.issue,
       changelog = req.body.changelog,
