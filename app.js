@@ -43,7 +43,7 @@ app.post('/jira-issue-added-to-sprint', function(req, res) {
     console.log(`${issue.key} added to ${sprintChanged.toString}`)
 
     let postData = {
-      text: `${user.displayName} added ${issue.key} to ${sprintChanged.toString}`,
+      text: `${user.displayName} added an issue to ${sprintChanged.toString}`,
       attachments: [
         {
           fallback: `${user.displayName} added <${jiraURL}/browse/${issue.key}|${issue.key}: ${issue.fields.summary}> to ${sprintChanged.toString}`,
