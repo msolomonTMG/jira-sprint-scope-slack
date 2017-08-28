@@ -21,7 +21,7 @@ app.post('/jira-issue-added-to-sprint', function(req, res) {
 
   let sprintChanged = changelog.items.find(item => item.field === "Sprint")
 
-  let addedToFutureSprint = determineFutureSprint(issue.fields.customfield_10016)
+  let addedToActiveSprint = determineActiveSprint(issue.fields.customfield_10016)
 
   if (!sprintChanged) {
 
@@ -33,9 +33,9 @@ app.post('/jira-issue-added-to-sprint', function(req, res) {
     console.log(`${issue.key} removed from ${sprintChanged.fromString}`)
     res.sendStatus(200)
 
-  } else if (addedToFutureSprint) {
+  } else if (!addedToActiveSprint) {
 
-    console.log(`${issue.key} added to future sprint`)
+    console.log(`${issue.key} added to future or closed sprint`)
     res.sendStatus(200)
 
   } else {
@@ -95,12 +95,12 @@ app.post('/jira-issue-added-to-sprint', function(req, res) {
   }
 
   /*
-   * Take an array of sprints (strings) and if you find one where state=future
+   * Take an array of sprints (strings) and if you find one where state=active
    * then return true. I'm not sure if an issue can belong to an active sprint
    * as well as a future sprint. If that's the case, then this function needs
    * refactoring.
   */
-  function determineFutureSprint(sprints) {
+  function determineActiveSprint(sprints) {
     // its possible there are no sprints
     if (!sprints) {
       return false
@@ -108,7 +108,7 @@ app.post('/jira-issue-added-to-sprint', function(req, res) {
 
     for (let i=0; i < sprints.length; i++) {
 
-      if (sprints[i].includes('state=FUTURE')) {
+      if (sprints[i].includes('state=ACTIVE')) {
         return true
       } else if (i === sprints.length - 1) {
         return false
