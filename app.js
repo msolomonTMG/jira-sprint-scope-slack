@@ -21,7 +21,7 @@ app.post('/jira-issue-added-to-sprint', function(req, res) {
 
   let sprintChanged = changelog.items.find(item => item.field === "Sprint")
 
-  let addedToFutureSprint = determineFutureSprint(issue.fields.customfield_10016)
+  let addedToActiveSprint = sprintChangedToActiveSprint(issue.fields.customfield_10016)
 
   if (!sprintChanged) {
 
@@ -33,14 +33,9 @@ app.post('/jira-issue-added-to-sprint', function(req, res) {
     console.log(`${issue.key} removed from ${sprintChanged.fromString}`)
     res.sendStatus(200)
 
-  } else if (addedToFutureSprint) {
+  } else if (addedToActiveSprint) {
 
-    console.log(`${issue.key} added to future sprint`)
-    res.sendStatus(200)
-
-  } else {
-
-    console.log(`${issue.key} added to ${sprintChanged.toString}`)
+    console.log(`${issue.key} added to an active sprint: ${sprintChanged.toString}`)
 
     let postData = {
       text: `${user.displayName} added an issue to ${sprintChanged.toString}`,
@@ -92,15 +87,18 @@ app.post('/jira-issue-added-to-sprint', function(req, res) {
       }
     })
 
+  } else {
+
+    console.log(`${issue.key} added to a closed or future sprint`)
+    res.sendStatus(200)
+    
   }
 
   /*
-   * Take an array of sprints (strings) and if you find one where state=future
-   * then return true. I'm not sure if an issue can belong to an active sprint
-   * as well as a future sprint. If that's the case, then this function needs
-   * refactoring.
+   * Take an array of sprints (strings) and if you find one where state=active
+   * then return true.
   */
-  function determineFutureSprint(sprints) {
+  function sprintChangedToActiveSprint(sprints) {
     // its possible there are no sprints
     if (!sprints) {
       return false
@@ -108,7 +106,7 @@ app.post('/jira-issue-added-to-sprint', function(req, res) {
 
     for (let i=0; i < sprints.length; i++) {
 
-      if (sprints[i].includes('state=FUTURE')) {
+      if (sprints[i].includes('state=ACTIVE')) {
         return true
       } else if (i === sprints.length - 1) {
         return false
