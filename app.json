@@ -1,5 +1,5 @@
 {
-  "name": "Jira Sprint Scope Slack Notifications",
+  "name": "Jira Sprint Scope Slack Alerts",
   "description": "Get notified in slack when an issue is added to an active sprint in Jira",
   "repository": "https://github.com/msolomonTMG/jira-sprint-scope-slack",
   "logo": "https://cdn-images-1.medium.com/max/1600/1*DjW1SzknQjUPczint1z7zg.png",
