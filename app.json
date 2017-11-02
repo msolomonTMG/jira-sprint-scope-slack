@@ -2,7 +2,7 @@
   "name": "Jira Sprint Scope Slack Alerts",
   "description": "Get notified in slack when an issue is added to an active sprint in Jira",
   "repository": "https://github.com/msolomonTMG/jira-sprint-scope-slack",
-  "logo": "https://i.imgur.com/twTHux6.png",
+  "logo": "https://assets3.thrillist.com/v1/image/2715155",
   "keywords": ["node", "express", "slack", "jira", "sprints", "agile", "scope"],
    "env": {
     "SLACK_URL": {
