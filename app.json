@@ -3,5 +3,10 @@
   "description": "Get notified in slack when an issue is added to an active sprint in Jira",
   "repository": "https://github.com/msolomonTMG/jira-sprint-scope-slack",
   "logo": "https://cdn-images-1.medium.com/max/1600/1*DjW1SzknQjUPczint1z7zg.png",
-  "keywords": ["node", "express", "slack", "jira", "sprints", "agile", "scope"]
+  "keywords": ["node", "express", "slack", "jira", "sprints", "agile", "scope"],
+   "env": {
+    "SLACK_URL": {
+      "description": "The URL of the Slack webhook found in the custom integration configuration in Slack"
+    }
+   }
 }
