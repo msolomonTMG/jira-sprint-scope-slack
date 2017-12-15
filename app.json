@@ -7,12 +7,6 @@
    "env": {
     "SLACK_URL": {
       "description": "The URL of the Slack webhook found in the custom integration configuration in Slack"
-    },
-    "SLACK_OAUTH_TOKEN": {
-      "description": "The slack token that is generated when setting up your incoming webhook"
-    },
-    "JIRA_URL": {
-      "description": "The full url of you Jira instance with no trailing slash. Example: https://acme.atlassian.net"
     }
    }
 }
