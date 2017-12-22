@@ -12,7 +12,7 @@ e. Customize the name and icon of the integration to your heart's content :)
 a. Sign up for Heroku if you are not already registered with them (it's free)  
 b. Use this button to create a new app  
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FmsolomonTMG%2Fjira-sprint-scope-slack%2Ftree%2Fmaster)  
-d. Name your app
+d. Name your app  
 e. Paste the Slack Webhook URL into the SLACK_URL field that pops up
 ### 3. Setup a Webhook in your Jira instance
 a. Go to https://YOUR-JIRA-DOMAIN.atlassian.net/plugins/servlet/webhooks (you need administrator rights in your Jira instance to go here)   
